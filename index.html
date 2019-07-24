@@ -4,32 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylel.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylel.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
     <title>GPA Caculater</title>
 </head>
 <body>
-    <div class="content">
-        <div class="jumbotron">
-            <h1>GPA Calculater</h1>
+  <div class="container">
+    <div class="row">
+        <div class="col s12">
+            <div id="main" class="card">
+                <div class="card-content">
+                    <span class="card-title">GPA Calculater </span>
+                    <div class="row">
+                        <form action="" id="subject-form">
+                            <div class="input-field col s12">
+                                <input type="text" name="subject" id="subject" >
+                                <label for="subject">Subject Code</label>
+                            </div>
+                            <div class="input-field col s12">
+                              <input type="text" name="result" id="result" >
+                              <label for="result">Result</label>
+                          </div>
+                           <input type="submit" value="submit" class="btn">
+                        </form>   
+                    </div>
+                     
+                </div>
+                <ul class="collection"></ul> 
+            </div>
         </div>
-            <form>
-                    <div class="form-row">
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Subject Code" style="width:300px ">
-                      </div>
-                      <div class="col">
-                        <input type="text" class="form-control" placeholder="Result" style="width: 200px">
-                      </div>
-                      <div class="col">
-                      <input class="btn btn-primary" type="submit" value="Submit">
-                      </div>
-                   
-                    
-            </form>
-
-            <ul class="collection"></ul>
     </div>
+  </div>
+  
+    <script src="app.js"> </script>
     
     
 </body>
