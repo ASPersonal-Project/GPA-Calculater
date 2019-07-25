@@ -40,7 +40,7 @@ function addDetails(e){
     e.preventDefault();
     
 
-    const totalgpa = calulateGpa();
+    calulateGpa();
     // gpa.value= totalgpa;
     // console.log(gpa.value)
     // ;
@@ -52,15 +52,23 @@ function addDetails(e){
 }
 
 function calulateGpa(){
-    //console.log(resultInput.value);
-    // document.getElementById("p1").value = "gpavalue";
+    
     //console.log(resultInput.value);
      const gpaValue = getGpavalue(resultInput.value);
-     console.log(gpaValue);
+     //console.log(gpaValue);
 
-     
-    // const lastCharacterOfCode = charAt(subjectInput.length-1);
-    // const calculate = parseInt(lastCharacterOfCode)*gpaValue;
+    const charcter = subjectInput.value;
+    const lastCharacterOfCode = charcter.charAt(charcter.length-1);
+    //console.log(typeof(lastCharacterOfCode));
+    
+     const calculate = parseInt(lastCharacterOfCode);
+     if(Number.isInteger(calculate)){
+         //console.log("hai");
+         const totalgpa = calculate*gpaValue;
+         gpa.value= totalgpa;
+         console.log(totalgpa);
+     }
+    //console.log(calculate);
     // return calculate;
 
 }
