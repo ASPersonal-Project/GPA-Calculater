@@ -3,12 +3,16 @@ const subjectList = document.querySelector('.collection');
 const subjectInput = document.querySelector('#subject');
 const resultInput = document.querySelector('#result');
 const gpa = document.querySelector('#gpa');
+var totalgpa = 0;
+var totalcredit = 0;
 
 loadEventListeners();
 
 function loadEventListeners(){
 
     form.addEventListener('submit',addDetails);
+
+    subjectList.addEventListener('click',removesubject);
 
 }
 
@@ -24,7 +28,7 @@ function addDetails(e){
     li.appendChild(document.createTextNode(resultInput.value));
 
     const link = document.createElement('a');
-    link.className = 'secondary-content';
+    link.className = 'delete-item secondary-content';
     link.innerHTML = '<i class="fa fa-remove">';
 
     li.appendChild(link);
@@ -41,6 +45,9 @@ function addDetails(e){
     
 
     calulateGpa();
+    subjectInput.value = '';
+    resultInput.value = '';
+    
     // gpa.value= totalgpa;
     // console.log(gpa.value)
     // ;
@@ -48,6 +55,22 @@ function addDetails(e){
 
 
 
+
+}
+
+function removesubject(e){
+    if(e.target.parentElement.classList.contains('delete-item')){
+        if(confirm('Are you sure?')){}
+
+        e.target.parentElement.parentElement.remove();
+
+    }
+    // if(e.target.parentElement.classList.contains('delete-item')){
+    //     //console.log(e.target);
+    //     if(confirm('Are you sure?')){}
+    //     e.target.parentElement.parentElement.remove();
+    //   }
+   
 
 }
 
@@ -59,19 +82,25 @@ function calulateGpa(){
 
     const charcter = subjectInput.value;
     const lastCharacterOfCode = charcter.charAt(charcter.length-1);
-    //console.log(typeof(lastCharacterOfCode));
+    
     
      const calculate = parseInt(lastCharacterOfCode);
      if(Number.isInteger(calculate)){
-         //console.log("hai");
-         const totalgpa = calculate*gpaValue;
-         gpa.value= totalgpa;
-         console.log(totalgpa);
+         totalcredit = totalcredit+calculate;
+        
+         totalgpa = totalgpa + calculate*gpaValue;
+         gpa.value= totalgpa/totalcredit;
+         
      }
+    //  return totalgpa;
     //console.log(calculate);
     // return calculate;
 
 }
+
+// function totalgpa(){
+//     const totalvalue = calculateGpa();
+// }
 
 function getGpavalue(result){
     console.log(result);
@@ -82,32 +111,35 @@ function getGpavalue(result){
         case "A":
                 gpavalue = 4.00;
             break;
+        case "A-":
+                gpavalue = 3.70;
+            break;
         case "B+":
-                gpavalue = 4.00;
+                gpavalue = 3.30;
             break;
         case "B":
-                gpavalue = 4.00;
+                gpavalue = 3.00;
             break;
         case "B-":
-                gpavalue = 4.00;
+                gpavalue = 2.70;
             break;
         case "C+":
-                gpavalue = 4.00;
+                gpavalue = 2.30;
             break;
         case "C":
-                gpavalue = 4.00;
+                gpavalue = 2.00;
             break;
         case "C-":
-                gpavalue = 4.00;
+                gpavalue = 1.70;
             break;
         case "D+":
-                gpavalue = 4.00;
+                gpavalue = 1.30;
             break;
         case "D":
-                gpavalue = 4.00;
+                gpavalue = 1.00;
             break;
         case "E":
-                gpavalue = 4.00;
+                gpavalue = 0.00;
             break;
         default:
                 gpavalue = 0.0;
