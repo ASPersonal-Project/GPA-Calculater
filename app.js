@@ -21,17 +21,18 @@ function addDetails(e){
         //alert('File Your Result and Subject Code');
     }
     const li = document.createElement('li');
-    li.className = 'collection-item';
+    li.id = 'collection-item';
     li.appendChild(document.createTextNode(subjectInput.value));
+    // console.log(document.getElementsByClassName('collection-'));
     
-    li.appendChild(document.createTextNode(" "));
-    li.appendChild(document.createTextNode(resultInput.value));
+    // li.appendChild(document.createTextNode(" "));
+    // li.appendChild(document.createTextNode(resultInput.value));
 
-    const link = document.createElement('a');
-    link.className = 'delete-item secondary-content';
-    link.innerHTML = '<i class="fa fa-remove">';
+    // const link = document.createElement('span');
+    // link.className = 'delete-item secondary-content';
+    // link.innerHTML = '<i class="fa fa-remove">';
 
-    li.appendChild(link);
+    // li.appendChild(link);
 
 
 
@@ -59,17 +60,18 @@ function addDetails(e){
 }
 
 function removesubject(e){
-    if(e.target.parentElement.classList.contains('delete-item')){
-        if(confirm('Are you sure?')){}
+    var deleteIteminput = document.querySelector('.list-item');
+    
+        console.log(deleteIteminput.firstChild.innerHTML);
 
-        e.target.parentElement.parentElement.remove();
-
-    }
     // if(e.target.parentElement.classList.contains('delete-item')){
-    //     //console.log(e.target);
     //     if(confirm('Are you sure?')){}
+
+        
+
     //     e.target.parentElement.parentElement.remove();
-    //   }
+
+    // }
    
 
 }
@@ -103,7 +105,7 @@ function calulateGpa(){
 // }
 
 function getGpavalue(result){
-    console.log(result);
+    //console.log(result);
     switch(result){
         case "A+":
                 gpavalue = 4.00;
