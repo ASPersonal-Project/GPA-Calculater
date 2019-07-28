@@ -21,18 +21,21 @@ function addDetails(e){
         //alert('File Your Result and Subject Code');
     }
     const li = document.createElement('li');
-    li.id = 'collection-item';
-    li.appendChild(document.createTextNode(subjectInput.value));
+    li.className = 'collection-item';
+    const sCode = document.createElement('span');
+    
+    sCode.appendChild(document.createTextNode(subjectInput.value));
     // console.log(document.getElementsByClassName('collection-'));
     
-    // li.appendChild(document.createTextNode(" "));
-    // li.appendChild(document.createTextNode(resultInput.value));
+    // sCode.appendChild(document.createTextNode(" "));
+    // sCode.appendChild(document.createTextNode(resultInput.value));
+    li.appendChild(sCode);
 
-    // const link = document.createElement('span');
-    // link.className = 'delete-item secondary-content';
-    // link.innerHTML = '<i class="fa fa-remove">';
+    const link = document.createElement('a');
+    link.className = 'delete-item secondary-content';
+    link.innerHTML = '<i class="fa fa-remove">';
 
-    // li.appendChild(link);
+     li.appendChild(link);
 
 
 
@@ -60,27 +63,26 @@ function addDetails(e){
 }
 
 function removesubject(e){
-    var deleteIteminput = document.querySelector('.list-item');
+    changeGpa();
     
-        console.log(deleteIteminput.firstChild.innerHTML);
 
-    // if(e.target.parentElement.classList.contains('delete-item')){
-    //     if(confirm('Are you sure?')){}
+    if(e.target.parentElement.classList.contains('delete-item')){
+        if(confirm('Are you sure?')){}
 
         
 
-    //     e.target.parentElement.parentElement.remove();
+        e.target.parentElement.parentElement.remove();
 
-    // }
+    }
    
 
 }
 
 function calulateGpa(){
     
-    //console.log(resultInput.value);
+    
      const gpaValue = getGpavalue(resultInput.value);
-     //console.log(gpaValue);
+    
 
     const charcter = subjectInput.value;
     const lastCharacterOfCode = charcter.charAt(charcter.length-1);
@@ -89,15 +91,40 @@ function calulateGpa(){
      const calculate = parseInt(lastCharacterOfCode);
      if(Number.isInteger(calculate)){
          totalcredit = totalcredit+calculate;
-        
-         totalgpa = totalgpa + calculate*gpaValue;
-         gpa.value= totalgpa/totalcredit;
+         //console.log(totalcredit);
+        getTotalGpa(gpaValue,totalcredit,calculate);
+         
          
      }
     //  return totalgpa;
     //console.log(calculate);
     // return calculate;
 
+}
+
+function changeGpa(){
+    const deleteIteminput = document.querySelector('.collection-item');
+    const removeCode = deleteIteminput.firstChild.innerHTML; 
+    const lastCharacterOfCode = removeCode.charAt(removeCode.length-1);
+    const calculate = parseInt(lastCharacterOfCode);
+    if(Number.isInteger(calculate)){
+        totalcredit = totalcredit-calculate;
+        //console.log(totalcredit);
+       
+        // totalgpa = totalgpa + calculate*gpaValue;
+        // gpa.value= totalgpa/totalcredit;
+        
+    }
+
+    
+        //console.log(deleteIteminput.firstChild.innerHTML);
+
+}
+function getTotalGpa(gpaValue,totalcredit,calculate){
+    console.log(gpaValue);
+    totalgpa = totalgpa + calculate*gpaValue;
+    gpa.value= totalgpa/totalcredit;
+    
 }
 
 // function totalgpa(){
