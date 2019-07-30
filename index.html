@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylel.css">
     <title>Document</title>
 </head>
 <body>
@@ -15,35 +17,38 @@
                         </div>
                
                 <div class="card-body ">
-                        <form>
+                        <form id="subject-form">
                                 <div class="form-row">
                                         <div class="col">&nbsp;</div>
                                         <div class="col-md-6">
                                             <div class="form-group row">
                                                 <label for="inputPassword" class="col-sm-2 col-form-label">GPA</label>
                                                 <div class="col-sm-5">
-                                                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                                        <input type="text" class="form-control" id="displaygpa" placeholder="GPA">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <div class="form-group col-md-6">
-                                                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                                                        <input type="text" class="form-control" id="inputScode" placeholder="Code">
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                                                        <input type="text" class="form-control" id="inputResult" placeholder="Result">
                                                 </div>
                                             </div>
-                                            <button type="button" class="btn btn-primary btn-lg btn-block">Submit </button>
-                                        </div>
+                                            <input type="submit" name="submit" class="btn btn-primary btn-lg btn-block" value="Submit">                                        </div>
                                         <div class="col">&nbsp;</div>
                                       </div>
                         </form>   
                 </div>
-                <ul class="list-group"></ul>
                 
+                <ul class="list-group"></ul>
                 </div>
+               
         </div>
+        
+        <script src="app.js"> </script>
 </body>
 </html>
+
         
     
