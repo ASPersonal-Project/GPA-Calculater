@@ -18,99 +18,58 @@ function loadEventListeners(){
 }
 
 function addDetails(e){
-    //console.log("haii")
     if(inputSubject.value===''|| inputResult.value===''){
         alert('File Your Result and Subject Code');
-    }
+    }else{
     const li = document.createElement('li');
     li.className = 'list-group-item';
-
     const Scode = document.createElement('span');
     Scode.appendChild(document.createTextNode(inputSubject.value));
-     Scode.appendChild(document.createTextNode("--"));
-     Scode.appendChild(document.createTextNode(inputResult.value));
-
-    // const Result = document.createElement('span');
-    // Result.id = 'space';
-    // Result.appendChild(document.createTextNode(inputResult.value));
-
-    
-    // console.log(document.getElementsByClassName('collection-'));
-    
-    // sCode.appendChild(document.createTextNode(" "));
-    // sCode.appendChild(document.createTextNode(resultInput.value));
+    Scode.appendChild(document.createTextNode("--------------------------------------"));
+    Scode.appendChild(document.createTextNode(inputResult.value));
     li.appendChild(Scode);
-    
-    
-    //li.appendChild(Result);
 
     const link = document.createElement('a');
     link.className = 'delete-item secondary-content';
     link.innerHTML = '<i class="fa fa-remove">';
-
-     li.appendChild(link);
-
-
-
+    li.appendChild(link);
 
     subjectList.appendChild(li);
-    // inputSubject.value = '';
-    // inputResult.value = '';
-    
-
-    
-
-    e.preventDefault();
+e.preventDefault();
 
     getTotalcreadit_and_valueOfLetter();
-    
-
-    // calulateGpa();
-    // inputSubject.value = '';
-    // inputResult.value = '';
+     inputSubject.value = '';
+     inputResult.value = '';
+    }
     
 }
 
 function removeSubject(e){
-    changeGpa();
+    
     
 
     if(e.target.parentElement.classList.contains('delete-item')){
+        changeGpa();
         if(confirm('Are you sure?')){}
-
-        
-
-        e.target.parentElement.parentElement.remove();
+            e.target.parentElement.parentElement.remove();
 
     }
-   
-
 }
 
 function getTotalcreadit_and_valueOfLetter(){
-    //console.log(inputResult.value);
-    
-    
      const valueOfletter = getDigit(inputResult.value);
-     //console.log(valueOfletter);
 
     const code = inputSubject.value;
-    //console.log(code);
     const lastCharacterOfCode = code.charAt(code.length-1);
-    
-    
      const lastNumber = parseInt(lastCharacterOfCode);
-     //console.log(lastNumber);
      if(Number.isInteger(lastNumber)){
+        totalGpa = totalGpa + valueOfletter*lastNumber;
+        console.log(valueOfletter*lastNumber);
          totalCredit = totalCredit+lastNumber;
-        // console.log(totalCredit);
-        getTotalGpa(valueOfletter,totalCredit,lastNumber);
-         
-         
+        //  console.log(totalCredit);
+        //  console.log(totalGpa);
+        getTotalGpa(totalGpa,totalCredit);    
      }
-    //  return totalgpa;
-    //console.log(lastNumber);
-    // return lastNumber;
 
 }
 
@@ -118,41 +77,33 @@ function changeGpa(){
     
     const deleteIteminput = document.querySelector('.list-group-item');
      const removeCode = deleteIteminput.firstChild.innerHTML;
-    //  const removeCode1 = deleteIteminput.lastChild.innerHTML;
-    //var removeCode = document.getElementById("space").innerHTML; 
-   
-   
-     
-     const lastCharacterOfCode = removeCode.charAt(removeCode.length-4);
-     console.log(lastCharacterOfCode);
-    // const lastNumber = parseInt(lastCharacterOfCode);
-    // if(Number.isInteger(lastNumber)){
-    //     totalcredit = totalcredit-lastNumber;
-        //console.log(totalcredit);
-       
-        // totalgpa = totalgpa + lastNumber*gpaValue;
-        // gpa.value= totalgpa/totalcredit;
+     console.log(removeCode);
+     const CharacterOfList = removeCode.charAt(removeCode.length-40);
+     const lastCharacterOfList = removeCode.charAt(removeCode.length-1);
+     console.log(lastCharacterOfList);
+     const valueOfRemoveLetter = getDigit(lastCharacterOfList);
+     const lastNumber = parseInt(CharacterOfList);
+     if(Number.isInteger(lastNumber)){
+         //const value = valueOfRemoveLetter*lastNumber;
+         totalGpa = totalGpa-valueOfRemoveLetter*lastNumber;
+         console.log(valueOfRemoveLetter*lastNumber);
+         totalCredit = totalCredit-lastNumber;
+        // console.log(totalCredit);
+        // console.log(totalGpa);
+        getTotalGpa(totalGpa,totalCredit);   
+    }
+}
+
+function getTotalGpa(totalGpa,totalCredit){
+    totalOfGpa= totalGpa/totalCredit;
+    //console.log(totalOfGpa);
+    
+        gpa.value = totalOfGpa.toFixed(2);
         
     }
 
-    
-        //console.log(deleteIteminput.firstChild.innerHTML);
-
-
-function getTotalGpa(valueOfletter,totalCredit,lastNumber){
-    //console.log('ksnjfls');
-    //console.log(valueOfletter);
-    totalGpa = totalGpa + lastNumber*valueOfletter;
-    gpa.value= totalGpa/totalCredit;
-    
-}
-
-// function totalgpa(){
-//     const totalvalue = lastNumberGpa();
-// }
 
 function getDigit(result){
-    //console.log(result);
     switch(result){
         case "A+":
                 digit = 4.00;
@@ -194,7 +145,6 @@ function getDigit(result){
                 digit = 0.0;
 
     }
-    //document.getElementById("p1").value = "gpavalue";
     return  digit;
 }
 
