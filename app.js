@@ -18,9 +18,9 @@ function loadEventListeners(){
 }
 
 function addDetails(e){
-    if(inputSubject.value===''|| inputResult.value===''){
-        alert('File Your Result and Subject Code');
-    }else{
+    // if(inputSubject.value===''|| inputResult.value===''){
+    //     alert('File Your Result and Subject Code');
+    // }else{
     const li = document.createElement('li');
     li.className = 'list-group-item';
     const Scode = document.createElement('span');
@@ -35,21 +35,22 @@ function addDetails(e){
     li.appendChild(link);
 
     subjectList.appendChild(li);
-e.preventDefault();
+    e.preventDefault();
 
     getTotalcreadit_and_valueOfLetter();
      inputSubject.value = '';
      inputResult.value = '';
     }
     
-}
+
 
 function removeSubject(e){
     
     
 
     if(e.target.parentElement.classList.contains('delete-item')){
-        changeGpa();
+        const deleteIteminput = e.target.parentElement.parentElement.firstChild.innerHTML;
+        changeGpa(deleteIteminput);
         if(confirm('Are you sure?')){}
             e.target.parentElement.parentElement.remove();
 
@@ -64,19 +65,16 @@ function getTotalcreadit_and_valueOfLetter(){
      const lastNumber = parseInt(lastCharacterOfCode);
      if(Number.isInteger(lastNumber)){
         totalGpa = totalGpa + valueOfletter*lastNumber;
-        console.log(valueOfletter*lastNumber);
+        console.log(totalGpa);
          totalCredit = totalCredit+lastNumber;
-        //  console.log(totalCredit);
-        //  console.log(totalGpa);
+         console.log(totalCredit);
         getTotalGpa(totalGpa,totalCredit);    
      }
 
 }
 
-function changeGpa(){
+function changeGpa(removeCode){
     
-    const deleteIteminput = document.querySelector('.list-group-item');
-     const removeCode = deleteIteminput.firstChild.innerHTML;
      console.log(removeCode);
      const CharacterOfList = removeCode.charAt(removeCode.length-40);
      const lastCharacterOfList = removeCode.charAt(removeCode.length-1);
@@ -84,21 +82,22 @@ function changeGpa(){
      const valueOfRemoveLetter = getDigit(lastCharacterOfList);
      const lastNumber = parseInt(CharacterOfList);
      if(Number.isInteger(lastNumber)){
-         //const value = valueOfRemoveLetter*lastNumber;
          totalGpa = totalGpa-valueOfRemoveLetter*lastNumber;
-         console.log(valueOfRemoveLetter*lastNumber);
+         console.log(totalGpa);
          totalCredit = totalCredit-lastNumber;
-        // console.log(totalCredit);
-        // console.log(totalGpa);
+            console.log(totalCredit);
         getTotalGpa(totalGpa,totalCredit);   
     }
 }
 
 function getTotalGpa(totalGpa,totalCredit){
     totalOfGpa= totalGpa/totalCredit;
-    //console.log(totalOfGpa);
-    
-        gpa.value = totalOfGpa.toFixed(2);
+    console.log(totalOfGpa);
+    if(isNaN(totalOfGpa)){
+        gpa.value = "0.0000";
+    }else{
+        gpa.value = totalOfGpa.toFixed(4);
+    }
         
     }
 
