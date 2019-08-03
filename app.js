@@ -18,9 +18,6 @@ function loadEventListeners(){
 }
 
 function addDetails(e){
-    // if(inputSubject.value===''|| inputResult.value===''){
-    //     alert('File Your Result and Subject Code');
-    // }else{
     const li = document.createElement('li');
     li.className = 'list-group-item';
     const Scode = document.createElement('span');
